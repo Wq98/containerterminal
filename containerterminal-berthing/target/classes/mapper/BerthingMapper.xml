@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        " http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.BerthingMapper">
+    <insert id="berthInfoEntry" parameterType="BerthingInfo">
+        insert into tb_berthinginfo(
+        berthing_info_id,
+        berthing_id, berth_type_id, ship_id,
+        is_leisure, berthing_time, leaving_time,
+        berthing_state, create_time, modify_time
+        )values(
+        #{berthingInfoId},
+        #{berthingId}, #{berthTypeId}, #{shipId},
+        #{isLeisure}, #{berthingTime}, #{leavingTime},
+        #{berthingState},#{createTime},null
+        )
+    </insert>
+    <select id="queryBerthType" parameterType="string" resultType="string">
+        select berth_type from tb_berthageinfo
+        where berthing_id=#{berthingId}
+    </select>
+    <select id="berthingInfoQuery" resultType="BerthingInfo">
+        select * from tb_berthinginfo;
+    </select>
+    <select id="queryBerthLeisure" parameterType="string" resultType="string">
+        select berthing_state from tb_berthinginfo
+        where berthing_id=#{berthingId}
+    </select>
+    <select id="berthingInfoQueryById" resultType="BerthingInfo">
+        select * from tb_berthinginfo
+        where berthing_id=#{berthingId}
+    </select>
+    <select id="preShipInfoQuery" resultType="PreShipInfo">
+        select * from tb_preshipinfo;
+    </select>
+    <update id="agree" parameterType="string">
+        update tb_preshipinfo set pre_ship_state='已同意'
+        where ship_id=#{shipId}
+    </update>
+    <update id="refuse" parameterType="string">
+        update tb_preshipinfo set pre_ship_state='拒绝来港'
+        where ship_id=#{shipId}
+    </update>
+    <select id="queryByShipId" resultType="PreShipInfo">
+        select * from tb_preshipinfo
+        where ship_id=#{shipId}
+    </select>
+</mapper>
+
+
+
+
+
+
+
+

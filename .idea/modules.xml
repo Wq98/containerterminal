@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/containerterminal.iml" filepath="$PROJECT_DIR$/containerterminal.iml" />
+      <module fileurl="file://$PROJECT_DIR$/containerterminal-berthing/containerterminal-berthing.iml" filepath="$PROJECT_DIR$/containerterminal-berthing/containerterminal-berthing.iml" />
+      <module fileurl="file://$PROJECT_DIR$/containerterminal-common/containerterminal-common.iml" filepath="$PROJECT_DIR$/containerterminal-common/containerterminal-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/containerterminal-parent/containerterminal-parent.iml" filepath="$PROJECT_DIR$/containerterminal-parent/containerterminal-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/containerterminal-portal/containerterminal-portal.iml" filepath="$PROJECT_DIR$/containerterminal-portal/containerterminal-portal.iml" />
+      <module fileurl="file://$PROJECT_DIR$/containerterminal-user/containerterminal-user.iml" filepath="$PROJECT_DIR$/containerterminal-user/containerterminal-user.iml" />
+      <module fileurl="file://$PROJECT_DIR$/containerterminal-yard/containerterminal-yard.iml" filepath="$PROJECT_DIR$/containerterminal-yard/containerterminal-yard.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="containerterminal-portal" />
+        <module name="containerterminal-yard" />
+        <module name="containerterminal-common" />
+        <module name="containerterminal" />
+        <module name="containerterminal-berthing" />
+        <module name="containerterminal-user" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="containerterminal" target="1.8" />
+      <module name="containerterminal-berthing" target="1.8" />
+      <module name="containerterminal-common" target="1.8" />
+      <module name="containerterminal-parent" target="1.8" />
+      <module name="containerterminal-portal" target="1.8" />
+      <module name="containerterminal-user" target="1.8" />
+      <module name="containerterminal-yard" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="containerterminal" options="-parameters" />
+      <module name="containerterminal-berthing" options="-parameters" />
+      <module name="containerterminal-common" options="-parameters" />
+      <module name="containerterminal-parent" options="-parameters" />
+      <module name="containerterminal-portal" options="-parameters" />
+      <module name="containerterminal-user" options="-parameters" />
+      <module name="containerterminal-yard" options="-parameters" />
+    </option>
+  </component>
+</project>
