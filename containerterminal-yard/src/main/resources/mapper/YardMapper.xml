@@ -23,7 +23,13 @@
     </insert>
 
     <select id="containerQuery" resultType="ContainerInfo">
-        select * from tb_containerinfo;
+        select * from tb_containerinfo
+        order by out_time desc
+        limit #{start},#{rows}
+    </select>
+
+    <select id="queryContainerTotal" resultType="int">
+        select count(container_id) from tb_containerinfo;
     </select>
 
     <select id="containerQueryById" resultType="ContainerInfo">
@@ -34,6 +40,21 @@
         update tb_containerinfo set out_time=now()
         where container_id=#{containerId}
     </update>
+
+    <select id="queryByYardId" parameterType="string" resultType="string">
+        select yard_id from tb_yardmanaging
+        where yard_id like CONCAT(#{yardId},'%')
+    </select>
+
+    <select id="queryById" parameterType="string" resultType="YardManagingInfo">
+        select * from tb_yardmanaging
+        where yard_id=#{yardId}
+    </select>
+
+    <select id="queryByContainerId" parameterType="string" resultType="ContainerInfo">
+        select * from tb_containerinfo
+        where container_id=#{containerId}
+    </select>
 
 </mapper>
 

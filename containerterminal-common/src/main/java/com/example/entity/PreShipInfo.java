@@ -11,6 +11,7 @@ import java.util.Date;
  */
 @Data
 public class PreShipInfo {
+    private String id;
     private String shipId;
     private String preBerthingTime;
     private String preLeavingTime;

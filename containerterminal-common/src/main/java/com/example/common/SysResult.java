@@ -19,8 +19,7 @@ public class SysResult {
 	}
 	//有可能返回的只有status,msg,没有data
 	//编写静态方法,获取具有参数数据的SysResult,失败做准备
-	public static SysResult build(Integer status
-			,String msg,Object data){
+	public static SysResult build(Integer status,String msg,Object data){
 		return new SysResult(status, msg, data);
 	}//绝大部分时候不会出现失败
 	//编写一个返回成功数据的静态方法,status=200的 msg固定="ok"

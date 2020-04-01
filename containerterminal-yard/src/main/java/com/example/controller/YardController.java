@@ -1,8 +1,10 @@
 package com.example.controller;
 
 import com.example.common.EasyUIResult;
+import com.example.common.ResponseResult;
 import com.example.common.SysResult;
 import com.example.entity.ContainerInfo;
+import com.example.entity.YardManagingInfo;
 import com.example.service.YardService;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,10 +44,10 @@ public class YardController {
      * 集装箱出入场信息显示
      * @return
      */
-    @RequestMapping("containerQuery")
-    public List<ContainerInfo> containerQuery(){
-     List<ContainerInfo> list= yardService.containerQuery();
-     return list;
+    @RequestMapping("containerQuery{page}{rows}")
+    public EasyUIResult containerQuery(Integer page,Integer rows){
+     EasyUIResult result= yardService.containerQuery(page,rows);
+     return result;
     }
 
     /***
@@ -57,10 +59,42 @@ public class YardController {
     public SysResult containerExit(String containerId){
         try {
             yardService.containerExit(containerId);
-            return SysResult.build(200,"",yardService.containerQuery());
+            return SysResult.build(200,"",null);
         }catch (Exception e){
             e.printStackTrace();
             return SysResult.build(201,e.getMessage(),null);
+        }
+    }
+    @RequestMapping("queryByYardId{yardId}")
+    public ResponseResult<List<YardManagingInfo>> queryByYardId(String yardId){
+        try {
+            List<YardManagingInfo> list=yardService.queryByYardId(yardId);
+            return ResponseResult.build(200,"",list);
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResponseResult.build(201,"",null);
+        }
+    }
+
+    @RequestMapping("queryById{yardId}")
+    public ResponseResult queryById(String yardId){
+        try {
+            YardManagingInfo yardManagingInfo=yardService.queryById(yardId);
+            return ResponseResult.build(200,"",yardManagingInfo);
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResponseResult.build(201,"",null);
+        }
+    }
+
+    @RequestMapping("queryByContainerId{containerId}")
+    public ResponseResult queryByContainerId(String containerId){
+        try {
+            ContainerInfo containerInfo=yardService.queryByContainerId(containerId);
+            return ResponseResult.build(200,"",containerInfo);
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResponseResult.build(201,"",null);
         }
     }
 }

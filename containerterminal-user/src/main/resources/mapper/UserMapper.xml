@@ -20,6 +20,17 @@
        )
    </insert>
 
+    <select id="queryOperation" resultType="OperationInfo">
+        select * from tb_operationinfo
+        where user_id=#{userId}
+        order by operation_time desc;
+    </select>
+
+    <select id="queryByTime" resultType="OperationInfo">
+        select * from tb_operationinfo
+        where operation_time&gt;=#{start} and operation_time&lt;=#{end}
+        order by operation_time desc;
+    </select>
 </mapper>
 
 

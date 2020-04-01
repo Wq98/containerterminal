@@ -3,12 +3,15 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/containerterminal.iml" filepath="$PROJECT_DIR$/containerterminal.iml" />
+      <module fileurl="file://$PROJECT_DIR$/containerterminal-anasysis/containerterminal-anasysis.iml" filepath="$PROJECT_DIR$/containerterminal-anasysis/containerterminal-anasysis.iml" />
+      <module fileurl="file://$PROJECT_DIR$/containerterminal-basicdata/containerterminal-basicdata.iml" filepath="$PROJECT_DIR$/containerterminal-basicdata/containerterminal-basicdata.iml" />
       <module fileurl="file://$PROJECT_DIR$/containerterminal-berthing/containerterminal-berthing.iml" filepath="$PROJECT_DIR$/containerterminal-berthing/containerterminal-berthing.iml" />
       <module fileurl="file://$PROJECT_DIR$/containerterminal-common/containerterminal-common.iml" filepath="$PROJECT_DIR$/containerterminal-common/containerterminal-common.iml" />
       <module fileurl="file://$PROJECT_DIR$/containerterminal-parent/containerterminal-parent.iml" filepath="$PROJECT_DIR$/containerterminal-parent/containerterminal-parent.iml" />
       <module fileurl="file://$PROJECT_DIR$/containerterminal-portal/containerterminal-portal.iml" filepath="$PROJECT_DIR$/containerterminal-portal/containerterminal-portal.iml" />
       <module fileurl="file://$PROJECT_DIR$/containerterminal-user/containerterminal-user.iml" filepath="$PROJECT_DIR$/containerterminal-user/containerterminal-user.iml" />
       <module fileurl="file://$PROJECT_DIR$/containerterminal-yard/containerterminal-yard.iml" filepath="$PROJECT_DIR$/containerterminal-yard/containerterminal-yard.iml" />
+      <module fileurl="file://$PROJECT_DIR$/contianerterminal-transport/contianerterminal-transport.iml" filepath="$PROJECT_DIR$/contianerterminal-transport/contianerterminal-transport.iml" />
     </modules>
   </component>
 </project>

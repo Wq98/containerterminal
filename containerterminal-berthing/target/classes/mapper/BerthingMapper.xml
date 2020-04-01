@@ -20,8 +20,14 @@
         where berthing_id=#{berthingId}
     </select>
     <select id="berthingInfoQuery" resultType="BerthingInfo">
-        select * from tb_berthinginfo;
+        select * from tb_berthinginfo
+        order by leaving_time desc
+        limit #{start},#{rows}
     </select>
+    <select id="queryBerthingTotal" resultType="int">
+        select count(berthing_info_id) from tb_berthinginfo;
+    </select>
+
     <select id="queryBerthLeisure" parameterType="string" resultType="string">
         select berthing_state from tb_berthinginfo
         where berthing_id=#{berthingId}
@@ -31,19 +37,115 @@
         where berthing_id=#{berthingId}
     </select>
     <select id="preShipInfoQuery" resultType="PreShipInfo">
-        select * from tb_preshipinfo;
+        select * from tb_preshipinfo
+        order by pre_berthing_time desc
+        limit #{start},#{rows}
+    </select>
+
+    <select id="preShipInfoQueryTotal" resultType="int">
+        select count(id) from tb_preshipinfo
     </select>
     <update id="agree" parameterType="string">
         update tb_preshipinfo set pre_ship_state='已同意'
-        where ship_id=#{shipId}
+        where id=#{id}
     </update>
     <update id="refuse" parameterType="string">
         update tb_preshipinfo set pre_ship_state='拒绝来港'
-        where ship_id=#{shipId}
+        where id=#{id}
     </update>
+    <select id="arrangeShipInfoQuery" resultType="PreShipInfo">
+        select * from tb_preshipinfo
+        where pre_ship_state='已同意'
+        order by pre_berthing_time desc
+        limit #{start},#{rows}
+    </select>
+
+    <select id="arrangeShipInfoQueryTotal" resultType="int">
+        select count(id) from tb_preshipinfo
+        where pre_ship_state='已同意'
+    </select>
+    <select id="queryByPreShipInfoState" resultType="PreShipInfo">
+        select * from tb_preshipinfo
+        where pre_ship_state='待审核'
+        order by pre_berthing_time desc
+        limit #{start},#{rows}
+    </select>
+
+    <select id="queryByPreShipInfoStateTotal" resultType="int">
+        select count(id) from tb_preshipinfo
+        where pre_ship_state='待审核'
+    </select>
+
     <select id="queryByShipId" resultType="PreShipInfo">
         select * from tb_preshipinfo
         where ship_id=#{shipId}
+    </select>
+    <select id="queryByMoreConditions" parameterType="string" resultType="BerthingInfo">
+        select * from tb_berthinginfo
+        <where>
+            <if test="berthingId!=null">
+                berthing_id=#{berthingId}
+            </if>
+            <if test="shipId!=null">
+                and ship_id=#{shipId}
+            </if>
+            <if test="berthingTime!=null">
+                and berthing_time=#{berthingTime}
+            </if>
+        </where>
+        limit #{start},#{rows}
+    </select>
+    <select id="queryBerthingByConditionsTotal" resultType="int" parameterType="string">
+        select count(berthing_info_id) from tb_berthinginfo
+        <where>
+            <if test="berthingId!=null">
+                berthing_id=#{berthingId}
+            </if>
+            <if test="shipId!=null">
+                and ship_id=#{shipId}
+            </if>
+            <if test="berthingTime!=null">
+                and berthing_time=#{berthingTime}
+            </if>
+        </where>
+    </select>
+    <insert id="operationEntry" parameterType="OperationInfo">
+        insert into tb_operationinfo(
+        operation_id,
+        user_id,
+        operation_content,
+        operation_time
+        )values(
+        #{operationId},
+        #{userId},
+        #{operationContent},
+        #{operationTime}
+        )
+    </insert>
+    <select id="queryBerthInfoId" parameterType="String" resultType="BerthingInfo">
+        select * from tb_berthinginfo
+        where berthing_info_id=#{berthingInfoId}
+    </select>
+    <update id="updateBerthing" parameterType="berthingInfo">
+        update tb_berthinginfo set
+        berthing_id=#{berthingId},
+        berth_type_id=#{berthTypeId},
+        ship_id=#{shipId},
+        is_leisure=#{isLeisure},
+        berthing_time=#{berthingTime},
+        leaving_time=#{leavingTime},
+        berthing_state=#{berthingState},
+        modify_time=#{modifyTime}
+        where berthing_info_id=#{berthingInfoId}
+    </update>
+    <delete id="deleteBerthInfoId" parameterType="string">
+        delete from tb_berthinginfo
+        where berthing_info_id=#{berthingInfoId}
+    </delete>
+
+    <select id="queryByPreShipInfoId" parameterType="string" resultType="PreShipInfo">
+        select * from tb_preshipinfo
+        where ship_id=#{shipId} and pre_ship_state='已同意'
     </select>
 </mapper>
 

@@ -1,7 +1,11 @@
 package com.example.mapper;
 
 import com.example.entity.LoginInfo;
+import com.example.entity.OperationInfo;
 import com.example.entity.UserInfo;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * @Author: 魏秦
@@ -23,5 +27,18 @@ public interface UserMapper {
      */
     void insertLogin(LoginInfo loginInfo);
 
+    /***
+     * 查询用户操作日志
+     * @param userId
+     * @return
+     */
+    List<OperationInfo> queryOperation(String userId);
 
+    /***
+     * 查询时间段操作信息
+     * @param start
+     * @param end
+     * @return
+     */
+    List<OperationInfo> queryByTime(@Param("start") String start, @Param("end") String end);
 }

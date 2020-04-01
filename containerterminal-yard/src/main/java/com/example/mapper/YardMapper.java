@@ -1,6 +1,8 @@
 package com.example.mapper;
 
 import com.example.entity.ContainerInfo;
+import com.example.entity.YardManagingInfo;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -17,12 +19,6 @@ public interface YardMapper {
     void containerEntry(ContainerInfo containerInfo);
 
     /***
-     * 集装箱出入场信息查询
-     * @return
-     */
-    List<ContainerInfo> containerQuery();
-
-    /***
      * 根据集装箱编号查询出场
      * @param containerId
      * @return
@@ -30,9 +26,37 @@ public interface YardMapper {
     void containerExit(String containerId);
 
     /***
+     * 根据堆场ID模糊查询堆场信息
+     * @param yardId
+     * @return
+     */
+    List<YardManagingInfo> queryByYardId(String yardId);
+
+    /***
+     * 根据堆场id精确查询堆场信息
+     * @param yardId
+     * @return
+     */
+    YardManagingInfo queryById(String yardId);
+
+    /***
      * 根据集装箱编号查询
      * @param containerId
      * @return
      */
-   // ContainerInfo containerQueryById(String containerId);
+    ContainerInfo queryByContainerId(String containerId);
+
+    /***
+     * 查询集装箱信息总数
+     * @return
+     */
+    int queryContainerTotal();
+
+    /***
+     * 集装箱信息分页查询
+     * @param start
+     * @param rows
+     * @return
+     */
+    List<ContainerInfo> containerQuery(@Param("start") int start,@Param("rows") Integer rows);
 }

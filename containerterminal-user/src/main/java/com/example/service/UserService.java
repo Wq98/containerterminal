@@ -2,6 +2,7 @@ package com.example.service;
 
 import com.example.common.UUIDUtil;
 import com.example.entity.LoginInfo;
+import com.example.entity.OperationInfo;
 import com.example.entity.UserInfo;
 import com.example.mapper.UserMapper;
 import org.springframework.stereotype.Service;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @Author: 魏秦
@@ -38,5 +40,13 @@ public class UserService implements UserMapper {
         loginInfo.setStaffId(staffId);
         loginInfo.setLoginTime(date);
         this.insertLogin(loginInfo);
+    }
+
+    public List<OperationInfo> queryOperation(String userId) {
+        return userMapper.queryOperation(userId);
+    }
+
+    public List<OperationInfo> queryByTime(String start, String end) {
+        return userMapper.queryByTime(start,end);
     }
 }
