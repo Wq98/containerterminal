@@ -2,6 +2,7 @@ package com.example.mapper;
 
 import com.example.entity.LoginInfo;
 import com.example.entity.OperationInfo;
+import com.example.entity.StaffInfo;
 import com.example.entity.UserInfo;
 import org.apache.ibatis.annotations.Param;
 
@@ -41,4 +42,17 @@ public interface UserMapper {
      * @return
      */
     List<OperationInfo> queryByTime(@Param("start") String start, @Param("end") String end);
+
+    StaffInfo queryStaffInfoById(String staffId);
+
+
+    int queryByStaffIdTotal(String staffId);
+
+    List<LoginInfo> queryByIdLoginInfo(@Param("staffId") String staffId, @Param("start") int start,@Param("rows") Integer rows);
+
+    void updateStaffInfo(StaffInfo staffInfo);
+
+    String queryPasswordById(String staffId);
+
+    void updatePasswordById(UserInfo userInfo);
 }

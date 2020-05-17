@@ -4,6 +4,7 @@ import com.example.common.EasyUIResult;
 import com.example.common.ResponseResult;
 import com.example.common.SysResult;
 import com.example.entity.ContainerInfo;
+import com.example.entity.DeliveryOrderInfo;
 import com.example.entity.YardManagingInfo;
 import com.example.service.YardService;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -97,4 +98,66 @@ public class YardController {
             return ResponseResult.build(201,"",null);
         }
     }
+
+    @RequestMapping("insertDeliveryOrder")
+    public ResponseResult insertDeliveryOrder(DeliveryOrderInfo deliveryOrderInfo){
+        try {
+            yardService.insertDeliveryOrder(deliveryOrderInfo);
+            return ResponseResult.build(200,"",null);
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResponseResult.build(201,"",null);
+        }
+    }
+    @RequestMapping("deliveryOrderInfoQuery")
+    public ResponseResult<List<DeliveryOrderInfo>> deliveryOrderInfoQuery(){
+        List<DeliveryOrderInfo> list=yardService.deliveryOrderInfoQuery();
+        return ResponseResult.build(200,"",list);
+    }
+
+    @RequestMapping("queryByBillNumber{billNumber}")
+    public ResponseResult queryByBillNumber(String billNumber){
+        DeliveryOrderInfo deliveryOrderInfo=yardService.queryByBillNumber(billNumber);
+        return ResponseResult.build(200,"",deliveryOrderInfo);
+    }
+
+    @RequestMapping("removeListDeliveryOrder")
+    public ResponseResult removeListDeliveryOrder(String str){
+        try {
+            String[] strings=str.split(",");
+            for(String strs:strings) {
+                yardService.deleteDeliveryOrderId(strs);
+            }
+            return ResponseResult.build(200,"",null);
+
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResponseResult.build(201,"",null);
+        }
+    }
+
+    @RequestMapping("deliveryOrderRemove{deliverOrderId}")
+    public  ResponseResult deliveryOrderRemove(String deliverOrderId){
+        System.out.println(deliverOrderId);
+        try {
+            yardService.deleteDeliveryOrderId(deliverOrderId);
+            return ResponseResult.build(200, "", null);
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResponseResult.build(201,"",null);
+        }
+    }
+
+    @RequestMapping("yardContainerExit{yardId}")
+    public ResponseResult yardContainerExit(String yardId){
+        yardService.yardContainerExit(yardId);
+        return ResponseResult.build(200,"",null);
+    }
+
+    @RequestMapping("yardContainerEntry")
+    public ResponseResult yardContainerEntry(YardManagingInfo yardManagingInfo){
+        yardService.yardContainerEntry(yardManagingInfo);
+        return ResponseResult.build(200,"",null);
+    }
+
 }

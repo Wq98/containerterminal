@@ -56,6 +56,71 @@
         where container_id=#{containerId}
     </select>
 
+    <insert id="insertDeliveryOrder" parameterType="DeliveryOrderInfo">
+        insert into tb_deliveryorder(
+        delivery_order_id,
+        ship_id,
+        bill_number,
+        goods_name,
+        weight,
+        size,
+        loading_port,
+        destination_port,
+        consignee_name,
+        address,
+        phone
+        )values(
+        #{deliveryOrderId},
+        #{shipId},
+        #{billNumber},
+        #{goodsName},
+        #{weight},
+        #{size},
+        #{loadingPort},
+        #{destinationPort},
+        #{consigneeName},
+        #{address},
+        #{phone}
+        )
+    </insert>
+    <select id="deliveryOrderInfoQuery" resultType="DeliveryOrderInfo">
+        select * from tb_deliveryorder;
+    </select>
+
+    <select id="queryByBillNumber" parameterType="string" resultType="DeliveryOrderInfo">
+        select * from tb_deliveryorder
+        where bill_number=#{billNumber}
+    </select>
+    <delete id="deleteDeliveryOrderId" parameterType="string">
+        delete from tb_deliveryorder
+        where delivery_order_id=#{deliveryOrderId}
+    </delete>
+
+    <delete id="yardContainerExit" parameterType="string">
+        delete from tb_yardmanaging
+        where yard_id=#{yardId}
+    </delete>
+
+    <insert id="yardContainerEntry" parameterType="YardManagingInfo">
+        insert into tb_yardmanaging(
+        yard_id,
+        container_id,
+        storing_time,
+        in_time,
+        out_time,
+        state,
+        create_time,
+        flag
+        )values(
+        #{yardId},
+        #{containerId},
+        #{storingTime},
+        #{inTime},
+        #{outTime},
+        #{state},
+        null,null
+        )
+    </insert>
 </mapper>
 
 

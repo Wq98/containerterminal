@@ -174,6 +174,15 @@ public class HbaseService {
         ResultScanner rs = table.getScanner(scan);
         return rs;
     }
+
+    public static ResultScanner showAll() throws Exception {
+        Table table=getTable("ship");
+        //全表扫描的方式获取数据 -- 创建Scan对象
+        Scan scan = new Scan();
+        //查询数据，并返回结果集
+        ResultScanner rs = table.getScanner(scan);
+        return rs;
+    }
     /**
      * 关闭流
      */

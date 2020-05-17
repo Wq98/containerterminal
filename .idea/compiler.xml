@@ -6,15 +6,16 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="contianerterminal-transport" />
-        <module name="containerterminal-yard" />
-        <module name="containerterminal-anasysis" />
-        <module name="containerterminal-portal" />
-        <module name="containerterminal-user" />
         <module name="containerterminal-common" />
-        <module name="containerterminal" />
-        <module name="containerterminal-berthing" />
         <module name="containerterminal-basicdata" />
+        <module name="containerterminal-berthing" />
+        <module name="containerterminal-portal" />
+        <module name="containerterminal-yard" />
+        <module name="contianerterminal-transport" />
+        <module name="containerterminal-equipment" />
+        <module name="containerterminal" />
+        <module name="containerterminal-anasysis" />
+        <module name="containerterminal-user" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -23,6 +24,7 @@
       <module name="containerterminal-basicdata" target="1.8" />
       <module name="containerterminal-berthing" target="1.8" />
       <module name="containerterminal-common" target="1.8" />
+      <module name="containerterminal-equipment" target="1.8" />
       <module name="containerterminal-parent" target="1.8" />
       <module name="containerterminal-portal" target="1.8" />
       <module name="containerterminal-transport" target="1.8" />
@@ -38,6 +40,7 @@
       <module name="containerterminal-basicdata" options="-parameters" />
       <module name="containerterminal-berthing" options="-parameters" />
       <module name="containerterminal-common" options="-parameters" />
+      <module name="containerterminal-equipment" options="-parameters" />
       <module name="containerterminal-parent" options="-parameters" />
       <module name="containerterminal-portal" options="-parameters" />
       <module name="containerterminal-transport" options="-parameters" />

@@ -1,6 +1,7 @@
 package com.example.mapper;
 
 import com.example.entity.ContainerInfo;
+import com.example.entity.DeliveryOrderInfo;
 import com.example.entity.YardManagingInfo;
 import org.apache.ibatis.annotations.Param;
 
@@ -59,4 +60,33 @@ public interface YardMapper {
      * @return
      */
     List<ContainerInfo> containerQuery(@Param("start") int start,@Param("rows") Integer rows);
+
+    /***
+     * 放货委托录入
+     * @param deliveryOrderInfo
+     */
+    void insertDeliveryOrder(DeliveryOrderInfo deliveryOrderInfo);
+
+    /***
+     * 查询放货委托信息
+     * @return
+     */
+    List<DeliveryOrderInfo> deliveryOrderInfoQuery();
+
+    /***
+     * 根据提单号查询放货委托信息
+     * @param billNumber
+     * @return
+     */
+    DeliveryOrderInfo queryByBillNumber(String billNumber);
+
+    /***
+     * 根据id批量删除放货委托信息
+     * @param deliveryOrderId
+     */
+    void deleteDeliveryOrderId(String deliveryOrderId);
+
+    void yardContainerExit(String yardId);
+
+    void yardContainerEntry(YardManagingInfo yardManagingInfo);
 }

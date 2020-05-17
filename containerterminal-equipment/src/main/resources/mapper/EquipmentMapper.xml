@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        " http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.EquipmentMapper">
+
+    <select id="equipmentOperationInfoQuery" parameterType="String" resultType="EquipmentDto">
+        select a.id,a.equipment_id,b.equipment_name,a.berthing_id,a.in_time,a.out_time from tb_equipmentoperationinfo a,tb_equipmentinfo b
+        where a.equipment_id=b.equipment_id and berthing_id=#{berthingId} and a.state&lt;&gt;0
+    </select>
+
+    <select id="equipmentOperationByIdQuery" parameterType="String" resultType="EquipmentDto">
+        select a.id,a.equipment_id,b.equipment_name,a.berthing_id,a.in_time,a.out_time from tb_equipmentoperationinfo a,tb_equipmentinfo b
+        where a.id=#{id} and a.equipment_id=b.equipment_id and a.state&lt;&gt;0
+    </select>
+
+    <update id="updateEquipmentOperation" parameterType="EquipmentOperationInfo">
+        update tb_equipmentoperationinfo set
+        equipment_id=#{equipmentId},
+        berthing_id=#{berthingId},
+        in_time=#{inTime},
+        out_time=#{outTime}
+        where id=#{id}
+    </update>
+
+    <update id="updateEquipmentOperationById" parameterType="EquipmentOperationInfo">
+        update tb_equipmentoperationinfo set
+        out_time=#{outTime}
+        where id=#{id}
+    </update>
+
+    <update id="deleteEquipmentOperationById" parameterType="string">
+        update tb_equipmentoperationinfo set
+        state=0
+        where id=#{id}
+    </update>
+
+    <insert id="equipmentOperationInfoEntry" parameterType="EquipmentOperationInfo">
+        insert into tb_equipmentoperationinfo(
+         id,
+        equipment_id,
+        berthing_id,
+        in_time
+        )values(
+        #{id},
+        #{equipmentId},
+        #{berthingId},
+        #{inTime}
+        )
+    </insert>
+
+    <select id="queryAllEquipmentId" resultType="String">
+        select equipment_id from tb_equipmentinfo
+    </select>
+
+    <select id="equipmentDamageQueryTotal" resultType="int">
+        select count(id) from tb_equipmentdamage
+    </select>
+    <select id="equipmentDamageQuery" resultType="EquipmentDamageInfo">
+        select * from tb_equipmentdamage
+        order by apply_repair_time desc
+        limit #{start},#{rows}
+    </select>
+
+    <select id="queryByEquipmentDamageId" parameterType="string" resultType="EquipmentDamageInfo">
+        select * from tb_equipmentdamage
+        where equipment_id=#{equipmentId}
+        order by apply_repair_time desc
+    </select>
+
+    <insert id="EquipmentDamageEntry" parameterType="EquipmentDamageInfo">
+        insert into tb_equipmentdamage(
+        id,
+        equipment_id,
+        apply_repair_time,
+        state
+        )values(
+        #{id},
+        #{equipmentId},
+        #{applyRepairTime},
+        #{state}
+        )
+    </insert>
+
+    <select id="equipmentDamageByIdQuery" parameterType="string" resultType="EquipmentDamageInfo">
+        select * from tb_equipmentdamage
+        where id=#{id}
+    </select>
+
+    <update id="updateEquipmentDamageState" parameterType="EquipmentDamageInfo">
+        update tb_equipmentdamage set
+        equipment_id=#{equipmentId},
+        apply_repair_time=#{applyRepairTime},
+        state=#{state}
+        where id=#{id}
+    </update>
+
+    <select id="EquipmentInfoQueryTotal" resultType="int">
+        select count(id) from tb_equipmentinfo
+    </select>
+
+    <select id="EquipmentInfoQuery" resultType="EquipmentInfo">
+        select * from tb_equipmentinfo
+        limit #{start},#{rows}
+    </select>
+
+    <delete id="deleteEquipmentInfoById" parameterType="string">
+        delete from tb_equipmentinfo
+        where id=#{id}
+    </delete>
+    <select id="queryByEquipmentId" parameterType="string" resultType="EquipmentInfo">
+        select * from tb_equipmentinfo
+        where equipment_id=#{equipmentId}
+    </select>
+
+    <select id="equipmentInfoByIdQuery" parameterType="string" resultType="EquipmentInfo">
+        select * from tb_equipmentinfo
+        where id=#{id}
+    </select>
+
+    <update id="updateEquipmentInfoById" parameterType="EquipmentInfo">
+        update tb_equipmentinfo set
+        equipment_id=#{equipmentId},
+        equipment_name=#{equipmentName},
+        equipment_total_num=#{equipmentTotalNum},
+        free_num=#{freeNum},
+        equipment_model=#{equipmentModel},
+        equipment_state=#{equipmentState}
+        where id=#{id}
+    </update>
+</mapper>
+
+
+
+
+
+
+
+

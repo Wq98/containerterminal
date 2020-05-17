@@ -1,7 +1,9 @@
 package com.example.service;
 
 import com.example.common.EasyUIResult;
+import com.example.common.UUIDUtil;
 import com.example.entity.ContainerInfo;
+import com.example.entity.DeliveryOrderInfo;
 import com.example.entity.YardManagingInfo;
 import com.example.mapper.YardMapper;
 import org.springframework.stereotype.Service;
@@ -67,5 +69,47 @@ public class YardService {
 
     public ContainerInfo queryByContainerId(String containerId) {
         return yardMapper.queryByContainerId(containerId);
+    }
+
+    /***
+     * 放货委托录入
+     * @param deliveryOrderInfo
+     */
+    public void insertDeliveryOrder(DeliveryOrderInfo deliveryOrderInfo) {
+        deliveryOrderInfo.setDeliveryOrderId(UUIDUtil.getUUID());
+        yardMapper.insertDeliveryOrder(deliveryOrderInfo);
+    }
+
+    /***
+     * 查询放货委托信息
+     * @return
+     */
+    public List<DeliveryOrderInfo> deliveryOrderInfoQuery() {
+        return yardMapper.deliveryOrderInfoQuery();
+    }
+
+    /***
+     * 根据提单号查询放货委托
+     * @param billNumber
+     * @return
+     */
+    public DeliveryOrderInfo queryByBillNumber(String billNumber) {
+        return yardMapper.queryByBillNumber(billNumber);
+    }
+
+    /***
+     * 根据放货委托ID删除信息
+     * @param deliveryOrderId
+     */
+    public void deleteDeliveryOrderId(String deliveryOrderId){
+        yardMapper.deleteDeliveryOrderId(deliveryOrderId);
+    }
+
+    public void yardContainerExit(String yardId) {
+        yardMapper.yardContainerExit(yardId);
+    }
+
+    public void yardContainerEntry(YardManagingInfo yardManagingInfo) {
+        yardMapper.yardContainerEntry(yardManagingInfo);
     }
 }

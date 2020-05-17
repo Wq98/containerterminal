@@ -31,6 +31,48 @@
         where operation_time&gt;=#{start} and operation_time&lt;=#{end}
         order by operation_time desc;
     </select>
+
+    <select id="queryStaffInfoById" parameterType="string" resultType="StaffInfo">
+        select * from tb_staffinfo
+        where staff_id=#{staffId}
+    </select>
+
+    <select id="queryLoginInfoById" parameterType="string" resultType="LoginInfo">
+        select * from tb_logininfo
+        where staff_id=#{staffId}
+    </select>
+
+    <select id="queryByStaffIdTotal" parameterType="string" resultType="int">
+        select count(staff_id) from tb_logininfo
+        where staff_id=#{staffId}
+    </select>
+
+    <select id="queryByIdLoginInfo" resultType="LoginInfo">
+        select * from tb_logininfo
+        where staff_id=#{staffId}
+        order by login_time desc
+        limit #{start},#{rows}
+    </select>
+
+    <update id="updateStaffInfo" parameterType="StaffInfo">
+        update tb_staffinfo set
+        staff_name=#{staffName},
+        staff_sex=#{staffSex},
+        staff_age=#{staffAge},
+        staff_phone=#{staffPhone},
+        staff_email=#{staffEmail}
+        where staff_id=#{staffId}
+    </update>
+
+    <select id="queryPasswordById" parameterType="string" resultType="string">
+        select password from tb_userinfo where staff_id=#{staffId}
+    </select>
+
+    <update id="updatePasswordById" parameterType="UserInfo">
+        update tb_userinfo set
+        password=#{password}
+        where staff_id=#{staffId}
+    </update>
 </mapper>
 
 

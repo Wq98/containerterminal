@@ -1,8 +1,10 @@
 package com.example.service;
 
+import com.example.common.EasyUIResult;
 import com.example.common.UUIDUtil;
 import com.example.entity.LoginInfo;
 import com.example.entity.OperationInfo;
+import com.example.entity.StaffInfo;
 import com.example.entity.UserInfo;
 import com.example.mapper.UserMapper;
 import org.springframework.stereotype.Service;
@@ -18,15 +20,15 @@ import java.util.List;
  * @description: com.example.service
  */
 @Service
-public class UserService implements UserMapper {
+public class UserService{
     @Resource
     private UserMapper userMapper;
-    @Override
+
     public int queryExist(String staffId, String password) {
         return userMapper.queryExist(staffId,password);
     }
 
-    @Override
+
     public void insertLogin(LoginInfo loginInfo) {
         userMapper.insertLogin(loginInfo);
     }
@@ -48,5 +50,31 @@ public class UserService implements UserMapper {
 
     public List<OperationInfo> queryByTime(String start, String end) {
         return userMapper.queryByTime(start,end);
+    }
+
+    public StaffInfo queryStaffInfoById(String staffId) {
+        return userMapper.queryStaffInfoById(staffId);
+    }
+
+    public EasyUIResult queryByIdLoginInfo(String staffId, Integer page, Integer rows) {
+        EasyUIResult result=new EasyUIResult();
+        int total=userMapper.queryByStaffIdTotal(staffId);
+        result.setTotal(total);
+        int start=(page-1)*rows;
+        List<LoginInfo> list=userMapper.queryByIdLoginInfo(staffId,start,rows);
+        result.setRows(list);
+        return result;
+    }
+
+    public void updateStaffInfo(StaffInfo staffInfo) {
+        userMapper.updateStaffInfo(staffInfo);
+    }
+
+    public String queryPasswordById(String staffId) {
+        return userMapper.queryPasswordById(staffId);
+    }
+
+    public void updatePasswordById(UserInfo userInfo) {
+        userMapper.updatePasswordById(userInfo);
     }
 }

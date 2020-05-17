@@ -18,4 +18,9 @@ public class DateFormat {
         SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         return format.format(date);
     }
+
+    public static String dateFormat1(Date date){
+        SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd");
+        return format.format(date);
+    }
 }

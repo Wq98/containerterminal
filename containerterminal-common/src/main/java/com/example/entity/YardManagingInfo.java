@@ -18,5 +18,5 @@ public class YardManagingInfo {
     private String outTime;
     private String state;
     private Date createTime;
-    private Date modifyTime;
+    private String flag;
 }

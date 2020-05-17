@@ -13,8 +13,10 @@ import java.util.Date;
 public class StaffInfo {
     private String staffId;
     private String staffName;
+    private String staffSex;
+    private int staffAge;
     private String staffPhone;
-    private String staffPosition;
+    private String staffEmail;
     private Date createTime;
     private Date modifyTime;
 
